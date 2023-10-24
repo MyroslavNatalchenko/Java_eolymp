@@ -1,0 +1,47 @@
+//https://basecamp.eolymp.com/ru/problems/5
+import java.util.Scanner;  // Import the Scanner class
+import static java.lang.Math.sqrt;
+
+public class Main
+{
+    public static boolean isSimple(int number) {
+        if(number < 2) return false;
+        for(int i = 2; i <= number / 2; i++) {
+            if(number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public static int find_N(int k)
+    {
+        int i=1,cnt=0;
+        for (i=1;i<=45360;i++)
+        {
+            if (!isSimple(i))
+            {
+                cnt=0;
+                for(int j=1;j<=i;j++)
+                {
+                    if (i%j==0)
+                    {
+                        cnt++;
+                        if (j*j==i)
+                            cnt++;
+                    }
+                }
+                if (cnt/2==k)
+                    return i;
+            }
+        }
+        return -1;
+    }
+    public static void main(String[] args)
+    {
+        Scanner myObj = new Scanner(System.in);  
+        int k = myObj.nextInt();
+        int find_needable=find_N(k);
+            System.out.println(find_needable);
+
+    }
+}
